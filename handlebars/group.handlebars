@@ -1,0 +1,32 @@
+<div id="{{ group_id }}" class="rules-group-container">
+  <div class="rules-group-header">
+    <div class="btn-group pull-right group-actions">
+      <button type="button" class="btn btn-xs btn-success" data-add="rule">
+        <i class="{{ icons.add_rule }}"></i> {{ jq_translate "add_rule" }}
+      </button>
+      {{#if (show_add_group settings level) }}
+        <button type="button" class="btn btn-xs btn-success" data-add="group">
+          <i class="{{ icons.add_group }}"></i> {{ jq_translate "add_group" }}
+        </button>
+      {{/if}}
+      {{#if (show_delete_group level) }}
+        <button type="button" class="btn btn-xs btn-danger" data-delete="group">
+          <i class="{{ icons.remove_group }}"></i> {{ jq_translate "delete_group" }}
+        </button>
+      {{/if}}
+    </div>
+    <div class="btn-group group-conditions">
+      {{#each conditions }}
+        <label class="btn btn-xs btn-primary">
+          <input type="radio" name="{{ group_id }}_cond" value="{{ this }}"> {{ jq_translate "conditions" this }}
+        </label>
+      {{/each}}
+    </div>
+    {{#if settings.display_errors }}
+      <div class="error-container"><i class="{{ icons.error }}"></i></div>
+    {{/if}}
+  </div>
+  <div class=rules-group-body>
+    <div class=rules-list></div>
+  </div>
+</div>

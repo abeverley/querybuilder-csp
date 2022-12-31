@@ -1,0 +1,17 @@
+{{ optgroup_set "" }}
+<select class="form-control" name="{{ name }}" {{#if (get_filter_property rule "multiple") }}multiple{{/if}}>
+  {{#if (get_filter_property rule "placeholder") }}
+    <option value="{{ get_filter_property rule "placeholder_value" }}" disabled selected>{{ get_filter_property rule "placeholder" }}</option>
+  {{/if}}
+  {{#each (get_filter_property rule "values") }}
+    {{#if (optgroup_different this.optgroup) }}
+      {{#if @root.optgroup }}</optgroup>{{/if}}
+      {{#if this.optgroup }}
+        <optgroup label="{{ jq_translate "optgroup" this.optgroup }}">
+        {{ optgroup_set this.optgroup }}
+      {{/if}}
+    {{/if}}
+    <option value="{{ this.value }}">{{ this.label }}</option>
+  {{/each}}
+  {{#if @root.optgroup }}</optgroup>{{/if}}
+</select>

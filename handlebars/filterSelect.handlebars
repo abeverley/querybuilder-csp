@@ -1,0 +1,17 @@
+{{ optgroup_set "" }}
+<select class="form-control" name="{{ rule.id }}_filter">
+  {{#if settings.display_empty_filter }}
+    <option value="-1">{{ settings.select_placeholder }}</option>
+  {{/if}}
+  {{#each filters }}
+    {{#if (optgroup_different this.optgroup) }}
+      {{#if @root.optgroup }}</optgroup>{{/if}}
+      {{#if this.optgroup }}
+        <optgroup label="{{ jq_translate "optgroup" this.optgroup }}">
+        {{ optgroup_set this.optgroup }}
+      {{/if}}
+    {{/if}}
+    <option value="{{ this.id }}" {{#if this.icon}}data-icon="{{ this.icon}}"{{/if}}>{{ jq_translate this.label }}</option>
+  {{/each}}
+  {{#if @root.optgroup }}</optgroup>{{/if}}
+</select>
